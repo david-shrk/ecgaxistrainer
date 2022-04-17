@@ -1,0 +1,62 @@
+#uelt {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background: conic-gradient(var(--uelt) 0deg 60deg, transparent 60deg 360deg);
+    position: absolute;
+    transition: filter 0.4s ease;
+}
+
+#lt {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background: conic-gradient(transparent 60deg, var(--lt) 60deg 120deg, transparent 120deg 360deg);
+    position: absolute;
+    transition: filter 0.4s ease;
+}
+
+#it {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background: conic-gradient(transparent 120deg, var(--it) 120deg 150deg, transparent 150deg 360deg);
+    position: absolute;
+    transition: filter 0.4s ease;
+}
+
+#st {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background: conic-gradient(transparent 150deg, var(--st) 150deg 180deg, transparent 180deg 360deg);
+    position: absolute;
+    transition: filter 0.4s ease;
+}
+
+#rt {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background: conic-gradient(transparent 180deg, var(--rt) 180deg 210deg, transparent 210deg 360deg);
+    position: absolute;
+    transition: filter 0.4s ease;
+}
+
+#uert {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background: conic-gradient(transparent 210deg, var(--uert) 210deg 270deg, transparent 270deg 360deg);
+    position: absolute;
+    transition: filter 0.4s ease;
+}
+
+#nwt {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background: conic-gradient(transparent 270deg, var(--nwt) 270deg 360deg);
+    position: absolute;
+    transition: filter 0.4s ease;
+}

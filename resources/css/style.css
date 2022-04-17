@@ -1,0 +1,223 @@
+@import url("colors.css");
+@import url("handle.css");
+@import url("cabrera.css");
+@import url("quiz.css");
+
+/* Properties */
+
+:root {
+    --button-radius: 0.0rem;
+  }
+
+
+/* Reset */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+html {
+    font-size: 20px;
+}
+
+/* Layout, Utility */
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    margin: 0 auto;
+    width: min(90%, 80rem);
+}
+
+.split {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.containerInner {
+    flex-basis: 12rem;
+    min-width: 12rem;
+    max-width: 70rem;
+    flex-grow: 1;
+}
+
+.containerInner2 {
+    flex-basis: 12rem;
+    min-width: 12rem;
+    max-width: 70rem;
+    flex-grow: 1;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.no_highlights{
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+/* Header */
+
+header {
+    margin-top: 1rem;
+}
+
+#headerWrapper {
+    display: flex;
+    padding: 0rem 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+    width: 50%;
+}
+
+nav {
+    flex-grow: 1;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: nowrap;
+}
+
+nav button {
+    width: 33%;
+    height: 100%;
+    font-size: 0.9rem;
+    background-color: white;
+    border-radius: var(--button-radius);
+    border: 0;
+    transition: color 0.2s ease;
+}
+
+nav button:hover {
+    color: var(--activeButton);
+}
+
+nav button:active {
+    color: red;
+}
+
+/* ECG */
+
+#ecg {
+    border-radius: var(--button-radius);
+}
+
+#ecgCanvas {
+    display: inline;
+    position: absolute;
+}
+
+#gridCanvas {
+    border: 1px solid grey;
+    display: inline;
+    position: absolute;
+    z-index: -1;
+    border-radius: var(--button-radius);
+}
+
+
+/* Cabrera Circle */
+
+#bigCircle {
+    width: 100%;
+    height: 100%;
+    border: 1px solid grey;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+}
+
+#circleLines {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    background-image: url('../images/cabrera.svg');
+    background-size: cover;
+}
+
+
+#lagetyp {
+    position: absolute;
+    top: 21%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: 1px solid grey;
+    background-color: var(--lt);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0.0rem 0.0rem 0.3rem rgba(0,0,0,0.25);
+    transition: background-color 0.4s ease;
+    overflow: hidden;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0.2rem 1rem;
+    z-index: 110;
+    white-space: nowrap;
+}
+
+
+/* About */
+
+#about {
+    display: none;
+    margin-top: 1rem;
+    line-height: 1.5;
+}
+
+#about p {
+    margin-bottom: 1rem;
+}
+
+
+
+
+/* Media Queries */
+
+@media screen and (max-width: 1000px) and (orientation: portrait) {
+    #headerWrapper h1 {
+        display: none;
+    }
+  }
+
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) { 
+    
+    html {
+        font-size: 16px;
+    }
+
+    #lagetyp {
+        font-size: 0.8rem;
+    }
+  
+  }

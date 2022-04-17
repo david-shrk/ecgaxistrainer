@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lagetyptrainer</title>
+    <link rel="stylesheet" href="./resources/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div id="headerWrapper">
+                <h1>Lagetyptrainer</h1>
+                <nav>
+                    <button id="button_cabrera" class="no_highlights">Cabrera</button>
+                    <button id="button_quiz" class="no_highlights">Quiz</button>
+                    <button id="button_about" class="no_highlights">Info</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="split">
+
+                <div id="cabrera" class="containerInner">
+
+                    <div id="bigCircle">
+                        <div id="lagetyp"></div>
+
+
+                        <div id="line">
+                            <div id="lineright"></div>
+                        </div>
+                        <div id="circleLines"></div>
+                        <div id="uelt"></div>
+                        <div id="lt"></div>
+                        <div id="it"></div>
+                        <div id="st"></div>
+                        <div id="rt"></div>
+                        <div id="uert"></div>
+                        <div id="nwt"></div>
+                    </div>
+                </div>
+
+                <div id="quiz" class="containerInner">
+                    <button id="button_lt" class="answer">Linkstyp</button>
+                    <button id="button_it" class="answer">Indifferenztyp</button>
+                    <button id="button_st" class="answer">Steiltyp</button>
+                    <button id="button_rt" class="answer">Rechtstyp</button>
+                    <button id="button_uelt" class="answer">Ueberdrehter Linkstyp</button>
+                    <button id="button_uert" class="answer">Ueberdrehter Rechtstyp</button>
+                    <div class="answer answerCounter" id="correct">Richtig:&nbsp<span id="answersCorrect">0</span></div>
+                    <div class="answer answerCounter" id="wrong">Falsch:&nbsp<span id="answersWrong">0</span></div>
+                </div>
+
+                <div id="about" class="containerInner2">
+                    <p>
+                        Ich bin Assistenzarzt in Weiterbildung zum Facharzt fuer Innere Medizin und Kardiologie und bin
+                        insbesondere in der invasiven Elektrophysiologie taetig. Zusaetzlich studiere ich Medizinische
+                        Informatik im Masterstudium als Fernstudium an der Berliner Hochschule fuer Technik.</p>
+                    <p>
+                        Medizinische Lehre und Ausbildung von Studierenden begleitet mich bereits seit langer Zeit.
+                        Insbesondere am Halten von EKG-Kursen habe ich bereits waehrend des Studiums viel Spass gehabt.
+                        Im Rahmen eines solchen Kurses entstand vor vielen Jahren ein erster EKG-Lagetyptrainer. Diesen
+                        habe ich jetzt etwas moderner als Web-app und Smartphone-kompatibel hier erneut umgesetzt. Ich
+                        hoffe, hiermit vielleicht einigen Studierenden das Erlernen und insbesondere das Verstehen der
+                        Lagetypbestimmung einfacher machen kann.
+                    </p>
+                    <p>
+                        Der Quellcode fuer diese Seite ist in Github frei verfuegbar. Der Lagetyptrainer wurde
+                        in nativem Javascript, CSS und HTML programmiert.
+                    </p>
+                </div>
+
+                <div id="ecg" class="containerInner">
+                    <canvas id="ecgCanvas" width="600" height="600"></canvas>
+                    <canvas id="gridCanvas" width="600" height="600"></canvas>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- <footer>
+        <div class="container text-center">
+            <p>David Schaack</p>
+        </div>
+    </footer> -->
+
+
+</body>
+
+<script src="./resources/js/main.js" defer type="module"></script>
+
+</html>

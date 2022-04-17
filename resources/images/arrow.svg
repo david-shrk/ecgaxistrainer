@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="600"
+   height="180"
+   viewBox="0 0 158.75 47.624999"
+   version="1.1"
+   id="svg10732"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="arrow.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview10734"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     width="600mm"
+     units="px"
+     inkscape:zoom="8.0634834"
+     inkscape:cx="505.17869"
+     inkscape:cy="125.50407"
+     inkscape:window-width="2560"
+     inkscape:window-height="1369"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs10729">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient7346">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop7342" />
+      <stop
+         style="stop-color:#666666;stop-opacity:1"
+         offset="1"
+         id="stop7344" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4667"
+       inkscape:swatch="gradient">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop4663" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop4665" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7346"
+       id="linearGradient7348"
+       x1="143.75172"
+       y1="28.842218"
+       x2="144.63765"
+       y2="16.340643"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.138859;stroke-opacity:1"
+       id="rect10965"
+       width="132.08476"
+       height="0.26458332"
+       x="8.804307"
+       y="23.680208" />
+    <path
+       id="rect4201-7"
+       style="fill:url(#linearGradient7348);stroke-width:0.691;stroke:#ffffff;opacity:1;stroke-opacity:0;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers stroke fill;stroke-dashoffset:0;fill-opacity:1;fill-rule:nonzero"
+       d="m 132.80417,17.197917 7.85783,6.613367 -7.85783,6.6158 18.52083,-6.6158 z"
+       sodipodi:nodetypes="ccccc" />
+  </g>
+</svg>

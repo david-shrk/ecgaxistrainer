@@ -1,0 +1,102 @@
+
+/* Quiz */
+
+#quiz {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 0rem;
+}
+
+.answer {
+    color: black;
+    font-size: 0.9rem;
+    border: 0;
+    width: 40%;
+    height: 21%;
+    flex-grow: 1;
+}
+
+button.answer {
+    color: black;
+    font-size: 0.9rem;
+    border: 0;
+    width: 40%;
+    flex-grow: 1;
+    box-shadow: var(--main-shadow);
+    border-radius: var(--button-radius);
+    transition: filter 0.4s ease;
+}
+
+.answerCounter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: none;
+}
+
+.animateCorrect {
+    animation-name: animation_correct;
+    animation-timing-function: ease;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.animateWrong {
+    animation-name: animation_wrong;
+    animation-timing-function: ease;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+#answersCorrect {
+    color: var(--correct);
+}
+
+#answersWrong {
+    color: var(--wrong);
+}
+
+button.answer:hover {
+    filter: saturate(5);
+}
+
+#button_lt {
+    background-color: var(--lt);
+}
+
+#button_uelt {
+    background-color: var(--uelt);
+}
+
+#button_it {
+    background-color: var(--it);
+}
+
+#button_st {
+    background-color: var(--st);
+}
+
+#button_rt {
+    background-color: var(--rt);
+}
+
+#button_uert {
+    background-color: var(--uert);
+}
+
+@keyframes animation_correct {
+    0%       {color: black; font-size: 1.5rem;}
+    30%      {color: var(--correct); font-size: 1.6rem;}
+    50%      {color:  var(--correct); font-size: 1.5rem;}
+    100%     {color:  black; font-size: 1.5rem;}
+  }
+  @keyframes animation_wrong {
+    0%       {color: black; font-size: 1.5rem;}
+    30%      {color: var(--wrong); font-size: 1.6rem;}
+    50%      {color:  var(--wrong); font-size: 1.5rem;}
+    100%     {color:  black; font-size: 1.5rem;}
+  }
