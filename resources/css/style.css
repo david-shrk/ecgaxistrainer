@@ -189,6 +189,12 @@ nav button:active {
     line-height: 1.5;
 }
 
+#about h2 {
+    margin: 2rem 0rem 0.5rem 0rem;
+    color: var(--activeButton);
+    font-size: 1.2rem;
+}
+
 #about p {
     margin-bottom: 1rem;
 }
