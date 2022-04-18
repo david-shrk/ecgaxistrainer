@@ -18,6 +18,8 @@
     box-sizing: border-box;
 }
 
+/* Basic Layout */
+
 body,
 h1,
 h2,
@@ -29,6 +31,24 @@ p {
 
 html {
     font-size: 20px;
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:visited {
+    color: var(--link);
+}
+
+a:active {
+    color: red;
+}
+
+a:hover {
+    color: var(--activeButton);
 }
 
 /* Layout, Utility */
@@ -199,7 +219,27 @@ nav button:active {
     margin-bottom: 1rem;
 }
 
+.contact {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    gap: 1rem 3rem;
+}
 
+.contact div {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.contact img {
+    height: 1.5rem;
+    margin-right: 0.8rem;
+}
+
+#icon_twitter {
+    fill: red!important;
+}
 
 
 /* Media Queries */

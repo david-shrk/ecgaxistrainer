@@ -9,4 +9,5 @@
   --correct: hsl(135, 100%, 30%);
   --wrong: hsl(8, 100%, 60%);
   --activeButton: hsl(19, 89%, 43%);
+  --link: hsl(219, 89%, 60%);
 }
