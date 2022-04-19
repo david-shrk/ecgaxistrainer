@@ -7,7 +7,7 @@
 
 :root {
     --button-radius: 0.0rem;
-  }
+}
 
 
 /* Reset */
@@ -88,7 +88,7 @@ button {
     text-align: center;
 }
 
-.no_highlights{
+.no_highlights {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -96,7 +96,7 @@ button {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
+}
 
 /* Header */
 
@@ -190,7 +190,7 @@ nav button:active {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0.0rem 0.0rem 0.3rem rgba(0,0,0,0.25);
+    box-shadow: 0.0rem 0.0rem 0.3rem rgba(0, 0, 0, 0.25);
     transition: background-color 0.4s ease;
     overflow: hidden;
     font-size: 1.2rem;
@@ -210,7 +210,7 @@ nav button:active {
 }
 
 #about h2 {
-    margin: 2rem 0rem 0.5rem 0rem;
+    margin: 2rem 0rem 1rem 0rem;
     color: var(--activeButton);
     font-size: 1.2rem;
 }
@@ -238,7 +238,7 @@ nav button:active {
 }
 
 #icon_twitter {
-    fill: red!important;
+    fill: red !important;
 }
 
 
@@ -248,16 +248,22 @@ nav button:active {
     #headerWrapper h1 {
         display: none;
     }
-  }
+}
 
-  @media
-  only screen and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (   min--moz-device-pixel-ratio: 2),
-  only screen and (     -o-min-device-pixel-ratio: 2/1),
-  only screen and (        min-device-pixel-ratio: 2),
-  only screen and (                min-resolution: 192dpi),
-  only screen and (                min-resolution: 2dppx) { 
-    
+/*TODO: Use this Query only for cabrera- and quiz-section */
+@media only screen and (orientation: portrait) and (min-aspect-ratio: 1/2) and (max-width: 500px) {
+    .container {
+        width: min(80%, 80rem);
+    }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min--moz-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2/1),
+only screen and (min-device-pixel-ratio: 2),
+only screen and (min-resolution: 192dpi),
+only screen and (min-resolution: 2dppx) {
+
     html {
         font-size: 16px;
     }
@@ -265,5 +271,5 @@ nav button:active {
     #lagetyp {
         font-size: 0.8rem;
     }
-  
-  }
+
+}
