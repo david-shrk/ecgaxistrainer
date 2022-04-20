@@ -51,7 +51,7 @@ a:hover {
     color: var(--activeButton);
 }
 
-/* Layout, Utility */
+/* Page Layout, Utility */
 
 button {
     cursor: pointer;
@@ -59,14 +59,14 @@ button {
 
 .container {
     margin: 0 auto;
-    width: min(90%, 80rem);
+    width: min(93%, 80rem);
 }
 
 .split {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    padding: 1rem;
+    padding: 1rem 1rem;
     gap: 1rem;
 }
 
@@ -80,7 +80,6 @@ button {
 .containerInner2 {
     flex-basis: 12rem;
     min-width: 12rem;
-    max-width: 70rem;
     flex-grow: 1;
 }
 
@@ -102,6 +101,7 @@ button {
 
 header {
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 #headerWrapper {
@@ -110,7 +110,7 @@ header {
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     width: 50%;
 }
 
@@ -244,18 +244,53 @@ nav button:active {
 
 /* Media Queries */
 
-@media screen and (max-width: 1000px) and (orientation: portrait) {
+@media screen and (max-width: 550px) and (orientation: portrait) {
     #headerWrapper h1 {
         display: none;
     }
 }
 
-/*TODO: Use this Query only for cabrera- and quiz-section */
-@media only screen and (orientation: portrait) and (min-aspect-ratio: 1/2) and (max-width: 500px) {
-    .container {
-        width: min(80%, 80rem);
+@media screen and (max-width: 1000px) and (orientation: landscape) {
+    header {
+        margin-bottom: 0rem;
     }
 }
+
+/* These queries take care of smartphones in portrait-mode which have a high aspect-ratio and therefore can't display the circle and the ecg without scrolling. */
+/* TODO: Use this Query only for cabrera- and quiz-section */
+@media only screen and (orientation: portrait) and (min-aspect-ratio: 55/100) and (max-width: 500px) {
+    .split {
+        padding: 1rem 2rem;
+    }
+
+    header {
+        margin-bottom: 0rem;
+    }
+
+}
+
+@media only screen and (orientation: portrait) and (min-aspect-ratio: 60/100) and (max-width: 500px) {
+    .split {
+        padding: 1rem 3rem;
+    }
+
+    header {
+        margin-bottom: 0rem;
+    }
+}
+
+
+@media only screen and (orientation: portrait) and (min-aspect-ratio: 65/100) and (max-width: 500px) {
+    .split {
+        padding: 1rem 4rem;
+    }
+
+    header {
+        margin-bottom: 0rem;
+    }
+}
+
+
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
 only screen and (min--moz-device-pixel-ratio: 2),

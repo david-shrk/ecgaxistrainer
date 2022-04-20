@@ -23,6 +23,7 @@ const line = document.getElementById('line');
 const lineright = document.getElementById('lineright');
 const bigCircle = document.getElementById('bigCircle');
 const containerDivs = document.querySelectorAll("div.containerInner");
+const split = document.querySelector('div.split');
 const ecg = document.getElementById('ecg');
 const cabrera = document.getElementById('cabrera');
 const quiz = document.getElementById('quiz');
@@ -121,6 +122,7 @@ window.addEventListener('resize', resizeEcg);
 window.onload = function () {
     resizeDivs();
     resizeEcg();
+    buttonCabrera.style.color = 'var(--activeButton)';
 }
 
 
@@ -157,6 +159,7 @@ function switchToQuiz() {
     buttonCabrera.style.color = '';
     buttonQuiz.style.color = 'var(--activeButton)';
     buttonAbout.style.color = '';
+    split.style.padding = '';
     window.dispatchEvent(new Event('resize'));
 }
 
@@ -168,6 +171,7 @@ function switchToCabrera() {
     buttonCabrera.style.color = 'var(--activeButton)';
     buttonQuiz.style.color = '';
     buttonAbout.style.color = '';
+    split.style.padding = '';
     window.dispatchEvent(new Event('resize'));
 }
 
@@ -179,6 +183,7 @@ function switchToAbout() {
     buttonCabrera.style.color = '';
     buttonQuiz.style.color = '';
     buttonAbout.style.color = 'var(--activeButton)';
+    split.style.padding = '1rem 1rem'; // about section does not get smaller with higher aspect-ratio mediaqueries 
     window.dispatchEvent(new Event('resize'));
 }
 

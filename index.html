@@ -14,8 +14,9 @@
 </head>
 
 <body>
-    <header>
-        <div class="container">
+    <div class="container">
+
+        <header>
             <div id="headerWrapper">
                 <h1>Lagetyptrainer</h1>
                 <nav>
@@ -24,19 +25,13 @@
                     <button id="button_about" class="no_highlights">Info</button>
                 </nav>
             </div>
-        </div>
-    </header>
+        </header>
+        <section>
 
-    <section>
-        <div class="container">
             <div class="split">
-
                 <div id="cabrera" class="containerInner">
-
                     <div id="bigCircle">
                         <div id="lagetyp"></div>
-
-
                         <div id="line">
                             <div id="lineright"></div>
                         </div>
@@ -50,7 +45,6 @@
                         <div id="nwt"></div>
                     </div>
                 </div>
-
                 <div id="quiz" class="containerInner">
                     <button id="button_lt" class="answer">Linkstyp</button>
                     <button id="button_it" class="answer">Indifferenztyp</button>
@@ -58,10 +52,10 @@
                     <button id="button_rt" class="answer">Rechtstyp</button>
                     <button id="button_uelt" class="answer">Ueberdrehter Linkstyp</button>
                     <button id="button_uert" class="answer">Ueberdrehter Rechtstyp</button>
-                    <div class="answer answerCounter" id="correct">Richtig:&nbsp<span id="answersCorrect">0</span></div>
+                    <div class="answer answerCounter" id="correct">Richtig:&nbsp<span id="answersCorrect">0</span>
+                    </div>
                     <div class="answer answerCounter" id="wrong">Falsch:&nbsp<span id="answersWrong">0</span></div>
                 </div>
-
                 <div id="about" class="containerInner2">
                     <div class="contact">
                         <div>
@@ -75,16 +69,20 @@
                         </div>
                     </div>
                     <p>
-                        Ich bin Assistenzarzt in Weiterbildung zum Facharzt fuer Innere Medizin und Kardiologie und bin
+                        Ich bin Assistenzarzt in Weiterbildung zum Facharzt fuer Innere Medizin und Kardiologie und
+                        bin
                         insbesondere in der invasiven Elektrophysiologie taetig. Zusaetzlich studiere ich
                         berufsbegleitend Medizinische Informatik im Masterstudium an der Berliner Hochschule fuer
                         Technik.
                     </p>
                     <p>
                         Medizinische Lehre und Ausbildung von Studierenden begleiten mich bereits seit langer Zeit.
-                        Im Rahmen der Konzeption eines EKG-Kurses entstand vor vielen Jahren ein erster EKG-Lagetyptrainer. Diesen
-                        habe ich jetzt etwas moderner als Webapp und smartphone-kompatibel hier erneut umgesetzt. Ich
-                        hoffe, hiermit vielleicht einigen Studierenden das Erlernen und insbesondere das Verstehen der
+                        Im Rahmen der Konzeption eines EKG-Kurses entstand vor vielen Jahren ein erster
+                        EKG-Lagetyptrainer. Diesen
+                        habe ich jetzt etwas moderner als Webapp und smartphone-kompatibel hier erneut umgesetzt.
+                        Ich
+                        hoffe, hiermit vielleicht einigen Studierenden das Erlernen und insbesondere das Verstehen
+                        der
                         Lagetypbestimmung einfacher machen zu koennen.
                     </p>
                     <p>
@@ -92,13 +90,16 @@
                         in nativem Javascript, CSS und HTML programmiert.
                     </p>
                     <h2>Quellen</h2>
-                    <p>Quellen zum Cabrerakreis und zur Lagetypbestimmung gibt es unzaehlige sowohl in Lehrbuechern als
+                    <p>Quellen zum Cabrerakreis und zur Lagetypbestimmung gibt es unzaehlige sowohl in Lehrbuechern
+                        als
                         auch online. Ich kann hierfuer keine einzelnen Quellen explizit herausgreifen.</p>
-                    <p>Die Grafik des Cabrerakreises wurde von mir selbst erstellt, die Farbgebung wurde jedoch hiervon
+                    <p>Die Grafik des Cabrerakreises wurde von mir selbst erstellt, die Farbgebung wurde jedoch
+                        hiervon
                         uebernommen:<br>
                         <a href="https://commons.wikimedia.org/wiki/File:Cabrera_circle_-_german.svg"
                             target="_blank">Illustration des
-                            Cabrerakreises mit den Ableitungen nach Einthoven und Goldberger und den Lagetypen.</a><br>
+                            Cabrerakreises mit den Ableitungen nach Einthoven und Goldberger und den
+                            Lagetypen.</a><br>
                         Wikipedia.org, 19.11.2007. Autor: Sylvère Störmann. <em>GNU Free Documentation License</em>
                     </p>
                     <h2>MIT License</h2>
@@ -125,15 +126,14 @@
                         SOFTWARE.
                     </p>
                 </div>
-
                 <div id="ecg" class="containerInner">
                     <canvas id="ecgCanvas" width="600" height="600"></canvas>
                     <canvas id="gridCanvas" width="600" height="600"></canvas>
                 </div>
-
             </div>
-        </div>
-    </section>
+
+        </section>
+    </div>
 
 </body>
 
