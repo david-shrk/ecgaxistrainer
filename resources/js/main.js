@@ -4,13 +4,15 @@
  * 
  */
 
-
+//Imports
 import { drawEcg } from './ecgDrawing.js'
 import { mouseAngle } from './circleCalculations.js';
 import { calculateEcg, lagetyp } from './ecgCalculations.js';
-
+import { langDe, langEn } from './languages.js';
 
 // Variables
+let international = true;
+let currentSection = 'cabrera';
 let mouseDown = false;
 let angle = 45;
 let answersCorrect = 0;
@@ -24,16 +26,15 @@ const line = document.getElementById('line');
 const lineright = document.getElementById('lineright');
 const bigCircle = document.getElementById('bigCircle');
 const containerDivs = document.querySelectorAll("div.containerInner");
+const circleDe = document.getElementById('circleDe');
+const circleEn = document.getElementById('circleEn');
 const split = document.querySelector('div.split');
 const ecg = document.getElementById('ecg');
 const cabrera = document.getElementById('cabrera');
 const quiz = document.getElementById('quiz');
 const about = document.getElementById('about');
-const displayAnswersCorrect = document.getElementById('answersCorrect');
-const displayAnswersWrong = document.getElementById('answersWrong');
-const displayLagetyp = document.getElementById('lagetyp');
-const labelCorrect = document.getElementById('correct');
-const labelWrong = document.getElementById('wrong');
+const sectionGeneral = document.getElementById('sectionGeneral');
+const sectionSources = document.getElementById('sectionSources');
 
 // Canvas
 const ecgCanvas = document.getElementById('ecgCanvas');
@@ -50,15 +51,36 @@ const rt = document.getElementById('rt');
 const uert = document.getElementById('uert');
 const nwt = document.getElementById('nwt');
 const circleParts = [lt, it, st, rt, uert, uelt, nwt];
+const enLad = document.getElementById('enLad');
+const enNormal = document.getElementById('enNormal');
+const enRad = document.getElementById('enRad');
+const enNwt = document.getElementById('enNwt');
+const circlePartsEn = [enLad, enNormal, enRad, enNwt];
 
 // Navigation Buttons
 const buttonCabrera = document.getElementById('button_cabrera');
 const buttonQuiz = document.getElementById('button_quiz');
 const buttonAbout = document.getElementById('button_about');
+const buttonLangEn = document.getElementById('button_en');
+const buttonLangDe = document.getElementById('button_de');
 
 buttonQuiz.addEventListener('click', switchToQuiz);
 buttonCabrera.addEventListener('click', switchToCabrera);
 buttonAbout.addEventListener('click', switchToAbout);
+buttonLangEn.addEventListener('click', () => {
+    if (!international) {
+        international = true;
+        switchLanguage(international);
+        update(angle);
+    }
+})
+buttonLangDe.addEventListener('click', () => {
+    if (international) {
+        international = false;
+        switchLanguage(international);
+        update(angle);
+    }
+})
 
 // Quiz Buttons 
 const buttonIt = document.getElementById('button_it');
@@ -67,6 +89,9 @@ const buttonUelt = document.getElementById('button_uelt');
 const buttonSt = document.getElementById('button_st');
 const buttonRt = document.getElementById('button_rt');
 const buttonUert = document.getElementById('button_uert');
+const buttonEnNormal = document.getElementById('button_enNormal');
+const buttonEnLad = document.getElementById('button_enLad');
+const buttonEnRad = document.getElementById('button_enRad');
 
 buttonIt.addEventListener('click', () => {
     checkAnswer('Indifferenztyp')
@@ -86,7 +111,24 @@ buttonRt.addEventListener('click', () => {
 buttonUert.addEventListener('click', () => {
     checkAnswer('Ueberdrehter Rechtstyp')
 });
+buttonEnNormal.addEventListener('click', () => {
+    checkAnswer('Normal QRS axis', true)
+})
+buttonEnLad.addEventListener('click', () => {
+    checkAnswer('Left axis deviation', true)
+})
+buttonEnRad.addEventListener('click', () => {
+    checkAnswer('Right axis deviation', true)
+})
 
+// Quiz elements
+const displayAnswersCorrect = document.getElementById('answersCorrect');
+const displayAnswersWrong = document.getElementById('answersWrong');
+const displayLagetyp = document.getElementById('lagetyp');
+const displayCorrect = document.getElementById('correct');
+const displayWrong = document.getElementById('wrong');
+const labelCorrect = document.getElementById('labelCorrect');
+const labelWrong = document.getElementById('labelWrong');
 
 // Event-listeners
 lineright.addEventListener('mousedown', (e) => {
@@ -127,6 +169,7 @@ window.addEventListener('resize', resizeEcg);
 window.onload = function () {
     resizeDivs();
     resizeEcg();
+    switchLanguage(international);
     buttonCabrera.style.color = 'var(--activeButton)';
 }
 
@@ -156,48 +199,75 @@ document.addEventListener('touchmove', (event) => {
 
 // Navigation functions
 
-function switchToQuiz() {
-    labelCorrect.classList.remove('animateCorrect');
-    labelWrong.classList.remove('animateWrong');
-    quiz.style.display = 'flex';
-    cabrera.style.display = 'none';
-    ecg.style.display = '';
-    about.style.display = 'none';
-    newEcg();
-    buttonCabrera.style.color = '';
-    buttonQuiz.style.color = 'var(--activeButton)';
-    buttonAbout.style.color = '';
-    split.style.padding = '';
-    window.dispatchEvent(new Event('resize'));
+function switchToCabrera() {
+    if (currentSection != 'cabrera') {
+        quiz.style.display = 'none';
+        cabrera.style.display = '';
+        ecg.style.display = '';
+        about.style.display = 'none';
+        buttonCabrera.style.color = 'var(--activeButton)';
+        buttonQuiz.style.color = '';
+        buttonAbout.style.color = '';
+        split.style.padding = '';
+        currentSection = 'cabrera';
+        window.dispatchEvent(new Event('resize'));
+    }
 }
 
-function switchToCabrera() {
-    quiz.style.display = 'none';
-    cabrera.style.display = '';
-    ecg.style.display = '';
-    about.style.display = 'none';
-    buttonCabrera.style.color = 'var(--activeButton)';
-    buttonQuiz.style.color = '';
-    buttonAbout.style.color = '';
-    split.style.padding = '';
-    window.dispatchEvent(new Event('resize'));
+function switchToQuiz() {
+    if (currentSection != 'quiz') {
+        displayCorrect.classList.remove('animateCorrect');
+        displayWrong.classList.remove('animateWrong');
+        quiz.style.display = 'flex';
+        cabrera.style.display = 'none';
+        ecg.style.display = '';
+        about.style.display = 'none';
+        newEcg();
+        buttonCabrera.style.color = '';
+        buttonQuiz.style.color = 'var(--activeButton)';
+        buttonAbout.style.color = '';
+        split.style.padding = '';
+        currentSection = 'quiz';
+        window.dispatchEvent(new Event('resize'));
+    }
 }
 
 function switchToAbout() {
-    quiz.style.display = 'none';
-    cabrera.style.display = 'none';
-    ecg.style.display = 'none';
-    about.style.display = 'block';
-    buttonCabrera.style.color = '';
-    buttonQuiz.style.color = '';
-    buttonAbout.style.color = 'var(--activeButton)';
-    split.style.padding = '1rem 1rem'; // about section does not get smaller with higher aspect-ratio mediaqueries 
-    window.dispatchEvent(new Event('resize'));
+    if (currentSection != 'about') {
+        quiz.style.display = 'none';
+        cabrera.style.display = 'none';
+        ecg.style.display = 'none';
+        about.style.display = 'block';
+        buttonCabrera.style.color = '';
+        buttonQuiz.style.color = '';
+        buttonAbout.style.color = 'var(--activeButton)';
+        split.style.padding = '1rem 1rem'; // about section does not get smaller with higher aspect-ratio mediaqueries 
+        currentSection = 'about';
+        window.dispatchEvent(new Event('resize'));
+    }
 }
 
 
 // Display and layout functions
 
+/**
+ * Main update function to update the Cabrera-circle, the line and the ecg.
+ * @param {double} angle the angle of the heart-axis
+ */
+
+const update = (angle) => {
+    line.style.transform = 'rotate(' + angle + 'deg)';
+    updateDropShadow(line, angle);
+    if (international) {
+        styleCircleEn(angle);
+    } else {
+        styleCircle(angle);
+    }
+    displayLagetyp.innerHTML = (lagetyp(angle, international) + '<br>' + angle.toFixed(1) + '&deg');
+    const ecgAmplitudes = calculateEcg(angle);
+    const ecgLeads = ["I", "II", "III", "aVR", "aVL", "aVF"];
+    drawEcg(ctxEcg, ctxGrid, ecgLeads, ecgAmplitudes, ecgCanvas.width, ecgCanvas.height, sideBySide, dpr);
+}
 
 function deleteRotationAnimation() {
     lineright.style.backgroundImage = 'none';
@@ -249,21 +319,6 @@ const resizeProportionally = (e) => {
 }
 
 /**
- * Main update function to update the Cabrera-circle, the line and the ecg.
- * @param {double} angle the angle of the heart-axis
- */
-
-const update = (angle) => {
-    line.style.transform = 'rotate(' + angle + 'deg)';
-    updateDropShadow(line, angle);
-    styleCircle(angle);
-    displayLagetyp.innerHTML = (lagetyp(angle) + '<br>' + angle.toFixed(1) + '&deg');
-    const ecgAmplitudes = calculateEcg(angle);
-    const ecgLeads = ["I", "II", "III", "aVR", "aVL", "aVF"];
-    drawEcg(ctxEcg, ctxGrid, ecgLeads, ecgAmplitudes, ecgCanvas.width, ecgCanvas.height, sideBySide, dpr);
-}
-
-/**
  * 
  * @param {object} e the element which the shadow should be applied to
  * @param {double} angle the current angle of the element
@@ -300,36 +355,63 @@ const styleCircle = (degree) => {
         console.log('invalid degree');
         return 'invalid degree';
     } else if (degree >= 30 && degree < 60) {
-        styleCircleParts(it);
+        styleCircleParts(it, circleParts);
         displayLagetyp.style.backgroundColor = 'var(--it)';
     } else if (degree >= 60 && degree < 90) {
-        styleCircleParts(st);
+        styleCircleParts(st, circleParts);
         displayLagetyp.style.backgroundColor = 'var(--st)';
     } else if (degree >= 90 && degree < 120) {
-        styleCircleParts(rt);
+        styleCircleParts(rt, circleParts);
         displayLagetyp.style.backgroundColor = 'var(--rt)';
     } else if (degree >= 120 && degree < 180) {
-        styleCircleParts(uert);
+        styleCircleParts(uert, circleParts);
         displayLagetyp.style.backgroundColor = 'var(--uert)';
     } else if (degree >= 180 && degree < 270) {
-        styleCircleParts(nwt);
+        styleCircleParts(nwt, circleParts);
         displayLagetyp.style.backgroundColor = 'var(--nwt)';
     } else if (degree >= 270 && degree < 330) {
-        styleCircleParts(uelt);
+        styleCircleParts(uelt, circleParts);
         displayLagetyp.style.backgroundColor = 'var(--uelt)';
     } else if (degree >= 330 || degree < 30) {
-        styleCircleParts(lt);
+        styleCircleParts(lt, circleParts);
         displayLagetyp.style.backgroundColor = 'var(--lt)';
+    }
+}
+
+/**
+ * Checks in which part of the Cabrera-circle the degree is and calls the styleCircleParts for the correct part. 
+ * International version (containig less parts then the German circle).
+ * @param {double} degree the current angle
+ * @returns an error only if the degree is invalid (>360 or <0)
+ */
+
+const styleCircleEn = (degree) => {
+    if (degree > 360 || degree < 0) {
+        console.log('invalid degree');
+        return 'invalid degree';
+    } else if (degree >= 90 && degree < 180) {
+        styleCircleParts(enRad, circlePartsEn);
+        displayLagetyp.style.backgroundColor = 'var(--st)';
+    } else if (degree >= 180 && degree < 270) {
+        styleCircleParts(enNwt, circlePartsEn);
+        displayLagetyp.style.backgroundColor = 'var(--uert)';
+    } else if (degree >= 270 && degree < 330) {
+        styleCircleParts(enLad, circlePartsEn);
+        displayLagetyp.style.backgroundColor = 'var(--lt)';
+    } else if (degree >= 330 || degree < 90) {
+        styleCircleParts(enNormal, circlePartsEn);
+        displayLagetyp.style.backgroundColor = 'var(--it)';
     }
 }
 
 /**
  * Empzasizes one part of the Cabrera-circle and resets all the other parts to initial styling.
  * @param {Element} e the element of circle that should be emphasized 
+ * @param {String[]} parts a string array containing all the circle parts (different for german and international version)
  */
 
-const styleCircleParts = (e) => {
-    circleParts.forEach(part => {
+const styleCircleParts = (e, parts) => {
+    parts.forEach(part => {
         if (e === part) {
             emphasizeCirclePart(e);
         } else {
@@ -339,7 +421,7 @@ const styleCircleParts = (e) => {
 }
 
 /**
- * Used to emphasize a part of the Cabrera-circle (for example on mouseover)
+ * Used to emphasize a part of the Cabrera-circle.
  * @param {Element} e the element that should be emphasized 
  */
 
@@ -362,21 +444,22 @@ const resetCirclePart = (e) => {
 /**
  * Checks if the answer matches the current axis and updates the counters accordingly.
  * @param {string} answer The current cardiac-axys type as a string.
+ * @param {boolean} international determines if German or international axis nomenclature is used (default is false, meaning German system).
  */
 
-const checkAnswer = (answer) => {
-    if (lagetyp(angle) === answer) {
+const checkAnswer = (answer, international = false) => {
+    if (lagetyp(angle, international) === answer) {
         answersCorrect += 1;
-        labelCorrect.classList.remove('animateCorrect');
-        void labelCorrect.offsetWidth; // Trigger reflow to make the animation work.
-        labelCorrect.classList.add('animateCorrect');
+        displayCorrect.classList.remove('animateCorrect');
+        void displayCorrect.offsetWidth; // Trigger reflow to make the animation work.
+        displayCorrect.classList.add('animateCorrect');
         displayAnswersCorrect.innerHTML = answersCorrect;
         newEcg();
     } else {
         answersWrong += 1;
-        labelWrong.classList.remove('animateWrong');
-        void labelWrong.offsetWidth; // Trigger reflow to make the animation work.
-        labelWrong.classList.add('animateWrong');
+        displayWrong.classList.remove('animateWrong');
+        void displayWrong.offsetWidth; // Trigger reflow to make the animation work.
+        displayWrong.classList.add('animateWrong');
         displayAnswersWrong.innerHTML = answersWrong;
     }
 }
@@ -402,4 +485,79 @@ const getRandomAxis = () => {
         degree = Math.floor(Math.random() * 360);
     } while ((degree >= 180 && degree < 270));
     return degree;
+}
+
+
+// Language functions
+
+/**
+ * Switches between international (english) and German version.
+ * This does not only change the language but also the whole axis-determination (only normal axis, left axis deviation, right axis deviation and Northwest-type for english as compared to the more complicated German system).
+ * @param {boolean} international defines if switch should be made to international (english) or German version
+ */
+function switchLanguage(international) {
+    langButtons(international);
+    langCabrera(international);
+    if (international) {
+        langFillContent(langEn);
+        buttonLangEn.classList.add('langButtonActive');
+        buttonLangDe.classList.remove('langButtonActive');
+    } else {
+        langFillContent(langDe);
+        buttonLangDe.classList.add('langButtonActive');
+        buttonLangEn.classList.remove('langButtonActive');
+    }
+}
+
+/**
+ * Switches the display of the buttons between international and German version.
+ * @param {boolean} international defines if switch should be made to international (english) or German version
+ */
+
+const langButtons = (international) => {
+    document.querySelectorAll("button.answer.de").forEach(element => {
+        if (international) {
+            element.style.display = 'none';
+        } else {
+            element.style.display = 'block';
+        }
+    })
+    document.querySelectorAll("button.answer.en").forEach(element => {
+        if (international) {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    })
+}
+
+/**
+ * Switches the display of the Cabrera circle between international and German version.
+ * @param {boolean} international defines if switch should be made to international (english) or German version
+ */
+
+const langCabrera = (international) => {
+    if (international) {
+        circleDe.style.display = 'none';
+        circleEn.style.display = 'block';
+    } else {
+        circleDe.style.display = 'block';
+        circleEn.style.display = 'none';
+    }
+}
+
+/**
+ * Fills the text-content with the correct language.
+ * @param {object} language An object containing the necessary content.
+ */
+
+const langFillContent = (language) => {
+    document.querySelector('h1').innerHTML = language.title;
+    buttonCabrera.innerHTML = language.navCabrera;
+    buttonQuiz.innerHTML = language.navQuiz;
+    buttonAbout.innerHTML = language.navAbout;
+    labelCorrect.innerHTML = language.quizCorrect;
+    labelWrong.innerHTML = language.quizWrong;
+    sectionGeneral.innerHTML = language.aboutGeneral;
+    sectionSources.innerHTML = language.aboutSources;
 }

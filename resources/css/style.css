@@ -118,14 +118,16 @@ nav {
 }
 
 nav button {
-    width: 33%;
+    width: 25%;
     height: 100%;
     font-size: 0.9rem;
     background-color: white;
     color: black;
     border: 0;
     transition: color 0.2s ease;
+
 }
+
 
 nav button:hover {
     color: var(--activeButton);
@@ -135,11 +137,32 @@ nav button:active {
     color: red;
 }
 
-/* ECG */
-
-#ecg {
-    border-radius: var(--button-radius);
+nav div {
+    width: 25%;
+    display: flex;
+    gap: 0.4rem;
+    justify-content: end;
 }
+
+nav .langButton {
+    font-size: 0.7rem;
+    border: 1px solid black;
+    height: 100%;
+    min-width: 2rem;
+}
+
+nav .langButton:hover {
+    color: white;
+    background-color: rgb(61, 61, 61);
+    transition: background-color 0.8s ease;
+}
+
+.langButtonActive {
+    color: white;
+    background-color: rgb(61, 61, 61);  
+}
+
+/* ECG */
 
 #ecgCanvas {
     display: inline;
@@ -151,7 +174,6 @@ nav button:active {
     display: inline;
     position: absolute;
     z-index: -1;
-    border-radius: var(--button-radius);
 }
 
 
@@ -166,15 +188,29 @@ nav button:active {
     z-index: 1;
 }
 
-#circleLines {
+.circleLines {
     width: 100%;
     height: 100%;
     position: absolute;
     z-index: 10;
-    background-image: url('../images/cabrera.svg');
     background-size: cover;
 }
 
+#circleDe {
+    display: none;
+}
+
+#circleEn {
+    display: none;
+}
+
+.circleLines.de{
+    background-image: url('../images/cabrera.svg');
+}
+
+.circleLines.en{
+    background-image: url('../images/cabreraEn.svg');
+}
 
 #lagetyp {
     position: absolute;
@@ -206,7 +242,7 @@ nav button:active {
 }
 
 #about h2 {
-    margin: 2rem 0rem 1rem 0rem;
+    margin: 1.5rem 0rem 1rem 0rem;
     color: var(--activeButton);
     font-size: 1.2rem;
 }
@@ -215,27 +251,25 @@ nav button:active {
     margin-bottom: 1rem;
 }
 
-.contact {
+#sectionContact {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     gap: 1rem 3rem;
 }
 
-.contact div {
+#sectionContact div {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
 }
 
-.contact img {
+#sectionContact img {
     height: 1.5rem;
     margin-right: 0.8rem;
 }
 
-#icon_twitter {
-    fill: red !important;
-}
+
 
 
 /* Media Queries */
@@ -253,7 +287,6 @@ nav button:active {
 }
 
 /* These queries take care of smartphones in portrait-mode which have a high aspect-ratio and therefore can't display the circle and the ecg without scrolling. */
-/* TODO: Use this Query only for cabrera- and quiz-section */
 @media only screen and (orientation: portrait) and (min-aspect-ratio: 55/100) and (max-width: 500px) {
     .split {
         padding: 1rem 2rem;

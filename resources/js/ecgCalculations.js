@@ -13,7 +13,7 @@
  * @returns amplitude as double (-1  to 1)
  */
 
- const calculateAmplitude = (angle, leadDegree) => {
+const calculateAmplitude = (angle, leadDegree) => {
     return (Math.cos(degToRad(angle) - degToRad(leadDegree)));
 }
 
@@ -38,35 +38,49 @@ const calculateEcg = (angle) => {
  * @param {double} deg degree 
  * @returns rad as double
  */
- const degToRad = (deg) => {
+const degToRad = (deg) => {
     return (deg * Math.PI / 180);
 }
 
 
 /**
- * Defines which heart-axis-position (German system) is present. 
+ * Defines which heart-axis-position is present. 
  * @param {double} degree the degree in Cabrera-circle as float
+ * @param {boolean} international determines if German or international axis nomenclature is used (default is false, meaning German system).
  * @returns the (German) heart-position as a string
  */
 
- const lagetyp = (degree) => {
+const lagetyp = (degree, international = false) => {
     if (degree > 360 || degree < 0) {
         console.log('invalid degree');
         return 'invalid degree';
-    } else if (degree >= 30 && degree < 60) {
-        return 'Indifferenztyp';
-    } else if (degree >= 60 && degree < 90) {
-        return 'Steiltyp';
-    } else if (degree >= 90 && degree < 120) {
-        return 'Rechtstyp';
-    } else if (degree >= 120 && degree < 180) {
-        return 'Ueberdrehter Rechtstyp';
-    } else if (degree >= 180 && degree < 270) {
-        return 'Northwest-Typ';
-    } else if (degree >= 270 && degree < 330) {
-        return 'Ueberdrehter Linkstyp';
-    } else if (degree >= 330 || degree < 30) {
-        return 'Linkstyp';
+    }
+    if (!international) {
+        if (degree >= 30 && degree < 60) {
+            return 'Indifferenztyp';
+        } else if (degree >= 60 && degree < 90) {
+            return 'Steiltyp';
+        } else if (degree >= 90 && degree < 120) {
+            return 'Rechtstyp';
+        } else if (degree >= 120 && degree < 180) {
+            return 'Ueberdrehter Rechtstyp';
+        } else if (degree >= 180 && degree < 270) {
+            return 'Northwest-Typ';
+        } else if (degree >= 270 && degree < 330) {
+            return 'Ueberdrehter Linkstyp';
+        } else if (degree >= 330 || degree < 30) {
+            return 'Linkstyp';
+        }
+    } else {
+        if (degree >= 90 && degree < 180) {
+            return 'Right axis deviation';
+        } else if (degree >= 180 && degree < 270) {
+            return 'Northwest axis';
+        } else if (degree >= 270 && degree < 330) {
+            return 'Left axis deviation';
+        } else if (degree >= 330 || degree < 90) {
+            return 'Normal QRS axis';
+        }
     }
 }
 

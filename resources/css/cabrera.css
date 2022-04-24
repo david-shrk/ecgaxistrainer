@@ -60,3 +60,41 @@
     position: absolute;
     transition: filter 0.4s ease;
 }
+
+/* English circle parts */
+
+#enLad {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background: conic-gradient(var(--lt) 0deg 60deg, transparent 60deg 360deg);
+    position: absolute;
+    transition: filter 0.4s ease;
+}
+
+#enNormal {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background: conic-gradient(transparent 60deg, var(--it) 60deg 180deg, transparent 180deg 360deg);
+    position: absolute;
+    transition: filter 0.4s ease;
+}
+
+#enRad {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background: conic-gradient(transparent 180deg, var(--st) 180deg 270deg, transparent 270deg 360deg);
+    position: absolute;
+    transition: filter 0.4s ease;
+}
+
+#enNwt {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background: conic-gradient(transparent 270deg, var(--uert) 270deg 360deg);
+    position: absolute;
+    transition: filter 0.4s ease;
+}

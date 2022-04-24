@@ -25,9 +25,12 @@ button.answer {
     border: 0;
     width: 40%;
     flex-grow: 1;
-    box-shadow: var(--main-shadow);
-    border-radius: var(--button-radius);
     transition: filter 0.4s ease;
+    display: none;
+}
+
+button.answer.en {
+    width : 80%;
 }
 
 .answerCounter {
@@ -86,6 +89,18 @@ button.answer:hover {
 
 #button_uert {
     background-color: var(--uert);
+}
+
+#button_enLad {
+    background-color: var(--lt);
+}
+
+#button_enNormal {
+    background-color: var(--it);
+}
+
+#button_enRad {
+    background-color: var(--st);
 }
 
 @keyframes animation_correct {

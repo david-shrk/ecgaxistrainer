@@ -28,15 +28,20 @@
 
         <header>
             <div id="headerWrapper">
-                <h1 class="text-center">Lagetyptrainer</h1>
+                <h1 class="text-center"></h1>
                 <nav>
                     <button id="button_cabrera" class="no_highlights">Cabrera</button>
                     <button id="button_quiz" class="no_highlights">Quiz</button>
                     <button id="button_about" class="no_highlights">Info</button>
+                    <div>
+                        <button id="button_en" class="langButton no_highlights">En</button>
+                        <button id="button_de" class="langButton no_highlights">De</button>
+                    </div>
                 </nav>
             </div>
         </header>
-        <section>
+
+        <main>
 
             <div class="split">
                 <div id="cabrera" class="containerInner">
@@ -45,29 +50,47 @@
                         <div id="line">
                             <div id="lineright"></div>
                         </div>
-                        <div id="circleLines"></div>
-                        <div id="uelt"></div>
-                        <div id="lt"></div>
-                        <div id="it"></div>
-                        <div id="st"></div>
-                        <div id="rt"></div>
-                        <div id="uert"></div>
-                        <div id="nwt"></div>
+                        <div id="circleDe">
+                            <div class="circleLines de"></div>
+                            <div id="uelt"></div>
+                            <div id="lt"></div>
+                            <div id="it"></div>
+                            <div id="st"></div>
+                            <div id="rt"></div>
+                            <div id="uert"></div>
+                            <div id="nwt"></div>
+                        </div>
+
+                        <div id="circleEn">
+                            <div class="circleLines en"></div>
+                            <div id="enLad"></div>
+                            <div id="enNormal"></div>
+                            <div id="enRad"></div>
+                            <div id="enNwt"></div>
+                        </div>
+
+
                     </div>
                 </div>
                 <div id="quiz" class="containerInner">
-                    <button id="button_lt" class="answer">Linkstyp</button>
-                    <button id="button_it" class="answer">Indifferenztyp</button>
-                    <button id="button_st" class="answer">Steiltyp</button>
-                    <button id="button_rt" class="answer">Rechtstyp</button>
-                    <button id="button_uelt" class="answer">Ueberdrehter Linkstyp</button>
-                    <button id="button_uert" class="answer">Ueberdrehter Rechtstyp</button>
-                    <div class="answer answerCounter" id="correct">Richtig:&nbsp<span id="answersCorrect">0</span>
+                    <button id="button_lt" class="answer de">Linkstyp</button>
+                    <button id="button_it" class="answer de">Indifferenztyp</button>
+                    <button id="button_st" class="answer de">Steiltyp</button>
+                    <button id="button_rt" class="answer de">Rechtstyp</button>
+                    <button id="button_uelt" class="answer de">Ueberdrehter Linkstyp</button>
+                    <button id="button_uert" class="answer de">Ueberdrehter Rechtstyp</button>
+                    <button id="button_enNormal" class="answer en">Normal QRS axis</button>
+                    <button id="button_enLad" class="answer en">Left axis deviation</button>
+                    <button id="button_enRad" class="answer en">Right axis deviation</button>
+                    <div class="answer answerCounter" id="correct"><span id="labelCorrect"></span>:&nbsp<span
+                            id="answersCorrect">0</span>
                     </div>
-                    <div class="answer answerCounter" id="wrong">Falsch:&nbsp<span id="answersWrong">0</span></div>
+                    <div class="answer answerCounter" id="wrong"><span id="labelWrong"></span>:&nbsp<span
+                            id="answersWrong">0</span></div>
                 </div>
+
                 <div id="about" class="containerInner2">
-                    <div class="contact">
+                    <section id="sectionContact">
                         <div>
                             <img src="./resources/images/twitter.svg">
                             <a href="https://twitter.com/dvidschaack" target="_blank">twitter.com/dvidschaack</a>
@@ -77,64 +100,36 @@
                             <a href="https://github.com/david-shrk/ecgaxistrainer"
                                 target="_blank">github.com/david-shrk/ecgaxistrainer</a>
                         </div>
-                    </div>
-                    <p>
-                        Ich bin Assistenzarzt in Weiterbildung zum Facharzt fuer Innere Medizin und Kardiologie und
-                        bin
-                        insbesondere in der invasiven Elektrophysiologie taetig. Zusaetzlich studiere ich
-                        berufsbegleitend Medizinische Informatik im Masterstudium an der Berliner Hochschule fuer
-                        Technik.
-                    </p>
-                    <p>
-                        Medizinische Lehre und Ausbildung von Studierenden begleiten mich bereits seit langer Zeit.
-                        Im Rahmen der Konzeption eines EKG-Kurses entstand vor vielen Jahren ein erster
-                        EKG-Lagetyptrainer. Diesen
-                        habe ich jetzt etwas moderner als Webapp und smartphone-kompatibel hier erneut umgesetzt.
-                        Ich
-                        hoffe, hiermit vielleicht einigen Studierenden das Erlernen und insbesondere das Verstehen
-                        der
-                        Lagetypbestimmung einfacher machen zu koennen.
-                    </p>
-                    <p>
-                        Der Quellcode fuer diese Seite ist in Github frei verfuegbar. Der Lagetyptrainer wurde
-                        in nativem Javascript, CSS und HTML programmiert.
-                    </p>
-                    <h2>Quellen</h2>
-                    <p>Quellen zum Cabrerakreis und zur Lagetypbestimmung gibt es unzaehlige sowohl in Lehrbuechern
-                        als
-                        auch online. Ich kann hierfuer keine einzelnen Quellen explizit herausgreifen.</p>
-                    <p>Die Grafik des Cabrerakreises wurde von mir selbst erstellt, die Farbgebung wurde jedoch
-                        hiervon
-                        uebernommen:<br>
-                        <a href="https://commons.wikimedia.org/wiki/File:Cabrera_circle_-_german.svg"
-                            target="_blank">Illustration des
-                            Cabrerakreises mit den Ableitungen nach Einthoven und Goldberger und den
-                            Lagetypen.</a><br>
-                        Wikipedia.org, 19.11.2007. Autor: Sylvère Störmann. <em>GNU Free Documentation License</em>
-                    </p>
-                    <h2>MIT License</h2>
-                    <p>Copyright (c) 2022 David Schaack</p>
-                    <p>
-                        Permission is hereby granted, free of charge, to any person obtaining a copy
-                        of this software and associated documentation files (the "Software"), to deal
-                        in the Software without restriction, including without limitation the rights
-                        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-                        copies of the Software, and to permit persons to whom the Software is
-                        furnished to do so, subject to the following conditions:
-                    </p>
-                    <p>
-                        The above copyright notice and this permission notice shall be included in all
-                        copies or substantial portions of the Software.
-                    </p>
-                    <p>
-                        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-                        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-                        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-                        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-                        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-                        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-                        SOFTWARE.
-                    </p>
+                    </section>
+                    <section id="sectionGeneral">
+                    </section>
+                    <section id="sectionSources">
+                    </section>
+                    <section>
+                        <h2>MIT License</h2>
+                        <p>Copyright (c) 2022 David Schaack</p>
+                        <p>
+                            Permission is hereby granted, free of charge, to any person obtaining a copy
+                            of this software and associated documentation files (the "Software"), to deal
+                            in the Software without restriction, including without limitation the rights
+                            to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                            copies of the Software, and to permit persons to whom the Software is
+                            furnished to do so, subject to the following conditions:
+                        </p>
+                        <p>
+                            The above copyright notice and this permission notice shall be included in all
+                            copies or substantial portions of the Software.
+                        </p>
+                        <p>
+                            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                            IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                            FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                            AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                            LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                            OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+                            SOFTWARE.
+                        </p>
+                    </section>
                 </div>
                 <div id="ecg" class="containerInner">
                     <canvas id="ecgCanvas" width="600" height="600"></canvas>
@@ -142,7 +137,7 @@
                 </div>
             </div>
 
-        </section>
+        </main>
     </div>
 
 </body>
