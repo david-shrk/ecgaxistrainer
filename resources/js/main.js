@@ -169,6 +169,9 @@ window.addEventListener('resize', resizeEcg);
 window.onload = function () {
     resizeDivs();
     resizeEcg();
+    if (navigator.language == 'de-DE') {
+        international = false;
+    }
     switchLanguage(international);
     buttonCabrera.style.color = 'var(--activeButton)';
 }
