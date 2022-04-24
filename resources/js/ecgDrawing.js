@@ -1,7 +1,6 @@
 /**
  * @file Includes all functions for drawing of the ecg-grid and the ecg itself.
  * @author David Schaack
- * @version
  */
 
 

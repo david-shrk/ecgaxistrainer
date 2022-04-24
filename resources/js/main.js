@@ -154,13 +154,7 @@ document.addEventListener('touchmove', (event) => {
 }, { passive: false });
 
 
-
-// Functions
-
-function deleteRotationAnimation() {
-    lineright.style.backgroundImage = 'none';
-    lineright.style.animationIterationCount = 0;
-}
+// Navigation functions
 
 function switchToQuiz() {
     labelCorrect.classList.remove('animateCorrect');
@@ -199,6 +193,15 @@ function switchToAbout() {
     buttonAbout.style.color = 'var(--activeButton)';
     split.style.padding = '1rem 1rem'; // about section does not get smaller with higher aspect-ratio mediaqueries 
     window.dispatchEvent(new Event('resize'));
+}
+
+
+// Display and layout functions
+
+
+function deleteRotationAnimation() {
+    lineright.style.backgroundImage = 'none';
+    lineright.style.animationIterationCount = 0;
 }
 
 /**
@@ -244,11 +247,6 @@ const resizeProportionally = (e) => {
     const width = e.offsetWidth;
     e.style.height = width + 'px';
 }
-
-
-
-
-
 
 /**
  * Main update function to update the Cabrera-circle, the line and the ecg.
@@ -359,14 +357,11 @@ const resetCirclePart = (e) => {
 }
 
 
-
-
-
-// QUIZ TODO: in module ausgliedern oder dokumentieren
-
+// Quiz functions
 
 /**
- * Generates a new random axis and uses the update-function with the new angle.
+ * Checks if the answer matches the current axis and updates the counters accordingly.
+ * @param {string} answer The current cardiac-axys type as a string.
  */
 
 const checkAnswer = (answer) => {
@@ -385,11 +380,21 @@ const checkAnswer = (answer) => {
         displayAnswersWrong.innerHTML = answersWrong;
     }
 }
+
+/**
+ * Generates a new random axis and uses the update-function with the new angle.
+ */
+
 const newEcg = () => {
     angle = getRandomAxis();
     update(angle);
 }
 
+/**
+ * Randomizes a degree in the cabrera-circle. Does not return "northwest-type" angles.
+ * TODO: cut degrees +-5° between borders because these ecgs are hard to read.
+ * @returns the randomized angle as double
+ */
 
 const getRandomAxis = () => {
     let degree = 0;
