@@ -94,6 +94,7 @@ button.answer:hover {
     50%      {color:  var(--correct); font-size: 1.5rem;}
     100%     {color:  black; font-size: 1.5rem;}
   }
+  
   @keyframes animation_wrong {
     0%       {color: black; font-size: 1.5rem;}
     30%      {color: var(--wrong); font-size: 1.6rem;}
