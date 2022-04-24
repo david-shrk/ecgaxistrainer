@@ -169,7 +169,7 @@ window.addEventListener('resize', resizeEcg);
 window.onload = function () {
     resizeDivs();
     resizeEcg();
-    if (navigator.language == 'de-DE') {
+    if (navigator.language == 'de-DE' || navigator.language == 'de') {
         international = false;
     }
     switchLanguage(international);
