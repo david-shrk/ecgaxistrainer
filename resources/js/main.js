@@ -12,11 +12,12 @@ import { calculateEcg, lagetyp } from './ecgCalculations.js';
 
 // Variables
 let mouseDown = false;
-let angle = 0;
+let angle = 45;
 let answersCorrect = 0;
 let answersWrong = 0;
 let sideBySide = false;
 let dpr = window.devicePixelRatio;
+let firstMove = true;
 
 // Main document elements
 const line = document.getElementById('line');
@@ -98,6 +99,10 @@ document.addEventListener('mouseup', () => {
 
 document.addEventListener('mousemove', (event) => {
     if (mouseDown) {
+        if (firstMove) {
+            deleteRotationAnimation();
+            firstMove = false;
+        }
         angle = mouseAngle(event, bigCircle);
         update(angle)
     }
@@ -138,6 +143,10 @@ document.addEventListener('touchend', () => {
 document.addEventListener('touchmove', (event) => {
     if (mouseDown) {
         event.preventDefault();
+        if (firstMove) {
+            deleteRotationAnimation();
+            firstMove = false;
+        }
         angle = (mouseAngle(event, bigCircle));
         update(angle);
     }
@@ -147,6 +156,11 @@ document.addEventListener('touchmove', (event) => {
 
 
 // Functions
+
+function deleteRotationAnimation() {
+    lineright.style.backgroundImage = 'none';
+    lineright.style.animationIterationCount = 0;
+}
 
 function switchToQuiz() {
     labelCorrect.classList.remove('animateCorrect');

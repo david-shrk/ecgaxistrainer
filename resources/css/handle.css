@@ -13,8 +13,29 @@
     width: 40%;
     height: 100%;
     background-color: transparent;
+    background-image: url(../images/rotationarrows.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
     position: absolute;
     right: 0px;
     z-index: 100;
     cursor: grab;
+    animation-name: animation_rotate;
+    animation-timing-function: ease;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes animation_rotate {
+    0% {
+        transform: scale(1, 1)
+    }
+
+    30% {
+        transform: scale(1, 1.1)
+    }
+
+    100% {
+        transform: scale(1, 1)
+    }
 }
