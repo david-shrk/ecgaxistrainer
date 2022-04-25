@@ -1,8 +1,11 @@
+/* The parts of the circle overlap the next part by 5deg each, because otherwise Gecko engine (Firefox) renders unsmooth borders between the parts */
+
+
 #uelt {
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    background: conic-gradient(var(--uelt) 0deg 60deg, transparent 60deg 360deg);
+    background: conic-gradient(var(--uelt) 0deg 65deg, transparent 65deg 360deg);
     position: absolute;
     transition: filter 0.4s ease;
 }
@@ -11,7 +14,7 @@
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    background: conic-gradient(transparent 60deg, var(--lt) 60deg 120deg, transparent 120deg 360deg);
+    background: conic-gradient(transparent 60deg, var(--lt) 60deg 125deg, transparent 125deg 360deg);
     position: absolute;
     transition: filter 0.4s ease;
 }
@@ -20,7 +23,7 @@
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    background: conic-gradient(transparent 120deg, var(--it) 120deg 150deg, transparent 150deg 360deg);
+    background: conic-gradient(transparent 120deg, var(--it) 120deg 155deg, transparent 155deg 360deg);
     position: absolute;
     transition: filter 0.4s ease;
 }
@@ -29,7 +32,7 @@
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    background: conic-gradient(transparent 150deg, var(--st) 150deg 180deg, transparent 180deg 360deg);
+    background: conic-gradient(transparent 150deg, var(--st) 150deg 185deg, transparent 185deg 360deg);
     position: absolute;
     transition: filter 0.4s ease;
 }
@@ -38,7 +41,7 @@
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    background: conic-gradient(transparent 180deg, var(--rt) 180deg 210deg, transparent 210deg 360deg);
+    background: conic-gradient(transparent 180deg, var(--rt) 180deg 215deg, transparent 215deg 360deg);
     position: absolute;
     transition: filter 0.4s ease;
 }
@@ -47,7 +50,7 @@
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    background: conic-gradient(transparent 210deg, var(--uert) 210deg 270deg, transparent 270deg 360deg);
+    background: conic-gradient(transparent 210deg, var(--uert) 210deg 275deg, transparent 275deg 360deg);
     position: absolute;
     transition: filter 0.4s ease;
 }
@@ -67,7 +70,7 @@
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    background: conic-gradient(var(--lt) 0deg 60deg, transparent 60deg 360deg);
+    background: conic-gradient(var(--lt) 0deg 65deg, transparent 65deg 360deg);
     position: absolute;
     transition: filter 0.4s ease;
 }
@@ -76,7 +79,7 @@
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    background: conic-gradient(transparent 60deg, var(--it) 60deg 180deg, transparent 180deg 360deg);
+    background: conic-gradient(transparent 60deg, var(--it) 60deg 185deg, transparent 185deg 360deg);
     position: absolute;
     transition: filter 0.4s ease;
 }
@@ -85,7 +88,7 @@
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    background: conic-gradient(transparent 180deg, var(--st) 180deg 270deg, transparent 270deg 360deg);
+    background: conic-gradient(transparent 180deg, var(--st) 180deg 275deg, transparent 275deg 360deg);
     position: absolute;
     transition: filter 0.4s ease;
 }
