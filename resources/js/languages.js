@@ -25,3 +25,14 @@ export const langEn = {
     aboutGeneral: '<p>I am a cardiology and invasive electrophysiology fellow from Germany and I am additionally pursuing an M.Sc. degree in medical computer science. I developed this webapp for students and teachers and I hope that it may help some people with learning and understanding cardiac axis interpretation.</p><p>The sourcecode for this tool is publically available on GitHub. It was developed with vanilla Javascript.</p>',
     aboutSources: '<h2>Sources</h2><p>There are countless books and online-sources explaining cardiac axis in the ECG. For example, the (generally awesome) blog <a href="https://litfl.com/" target="_blank">Life in the Fastlane</a> has a nice <a href="https://litfl.com/ecg-axis-interpretation/" target="_blank">article</a> about it. </p><p>The circle graphic was created by me, but the colors are inspired by this graphic:<br><a href="https://commons.wikimedia.org/wiki/File:Cabrera_circle_-_german.svg" target="_blank">Illustration des Cabrerakreises mit den Ableitungen nach Einthoven und Goldberger und den Lagetypen.</a><br>Wikipedia.org, 19.11.2007. Autor: Sylvère Störmann. <em>GNU Free Documentation License</em></p>'
 }
+
+export const langEs = {
+    title: 'Entrenador de Eje Cardíaco',
+    navCabrera: 'Eje Cardíaco',
+    navQuiz: 'Examen',
+    navAbout: 'Sobre',
+    quizCorrect: 'Correcto',
+    quizWrong: 'Incorrecto',
+    aboutGeneral: '<p>Soy un adjunto de cardiología y electrofisiología invasiva en Alemania y además de eso estoy estudiando un Master en Informática Médica. He desarrollado este aplicación para estudiantes y profesores y espero que pueda resultar útil para entender a calcular e interpretar el eje cardíaco.</p><p>El código fuebte de esta herranienta está disponible en GitHub. Lo he desarrollado con vanilla Javascript.</p>',
+    aboutSources: '<h2>Sources</h2><p>Hay innumerables libros y recursos online que explican el eje cardíaco en el EGC. Por ejemplo el blog (casi siempre genial) <a href="https://litfl.com/" target="_blank">Life in the Fastlane</a> tiene un precioso <a href="https://litfl.com/ecg-axis-interpretation/" target="_blank">artículo</a> sobre el tema. </p><p>El círculo del gráfico es diseño mío, pero los colores están inspirados en este gráfico:<br><a href="https://commons.wikimedia.org/wiki/File:Cabrera_circle_-_german.svg" target="_blank">Illustration des Cabrerakreises mit den Ableitungen nach Einthoven und Goldberger und den Lagetypen.</a><br>Wikipedia.org, 19.11.2007. Autor: Sylvère Störmann. <em>GNU Free Documentation License</em></p>'
+}
