@@ -118,14 +118,13 @@ nav {
 }
 
 nav button {
-    width: 25%;
+    width: 20%;
     height: 100%;
     font-size: 0.9rem;
     background-color: white;
     color: black;
     border: 0;
     transition: color 0.2s ease;
-
 }
 
 
@@ -138,8 +137,8 @@ nav button:active {
 }
 
 nav div {
-    width: 25%;
     display: flex;
+    width: 40%;
     gap: 0.4rem;
     justify-content: end;
 }
@@ -148,7 +147,12 @@ nav .langButton {
     font-size: 0.7rem;
     border: 1px solid black;
     height: 100%;
-    min-width: 2rem;
+    min-width: 1.4rem;
+    max-width: 1.7rem;
+    min-height: 1.4rem;
+    max-height: 1.7rem;
+    padding: 0;
+    flex-grow: 1;
 }
 
 nav .langButton:hover {

@@ -47,10 +47,11 @@ const degToRad = (deg) => {
  * Defines which heart-axis-position is present. 
  * @param {double} degree the degree in Cabrera-circle as float
  * @param {boolean} international determines if German or international axis nomenclature is used (default is false, meaning German system).
+ * @param {JSON} language language object with predefined terminology for the types of axis (only necessary for international language).
  * @returns the (German) heart-position as a string
  */
 
-const lagetyp = (degree, international = false) => {
+const lagetyp = (degree, international = false, language = null) => {
     if (degree > 360 || degree < 0) {
         console.log('invalid degree');
         return 'invalid degree';
@@ -73,13 +74,13 @@ const lagetyp = (degree, international = false) => {
         }
     } else {
         if (degree >= 90 && degree < 180) {
-            return 'Right axis deviation';
+            return language.typeRad;
         } else if (degree >= 180 && degree < 270) {
-            return 'Northwest axis';
+            return language.typeNw;
         } else if (degree >= 270 && degree < 330) {
-            return 'Left axis deviation';
+            return language.typeLad;
         } else if (degree >= 330 || degree < 90) {
-            return 'Normal QRS axis';
+            return language.typeNormal;
         }
     }
 }

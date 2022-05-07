@@ -8,10 +8,11 @@
 import { drawEcg } from './ecgDrawing.js'
 import { mouseAngle } from './circleCalculations.js';
 import { calculateEcg, lagetyp } from './ecgCalculations.js';
-import { langDe, langEn } from './languages.js';
+import { langDe, langEn, langEs } from './languages.js';
 
 // Variables
 let international = true;
+let currentLanguage = langEn;
 let currentSection = 'cabrera';
 let mouseDown = false;
 let angle = 45;
@@ -27,7 +28,7 @@ const lineright = document.getElementById('lineright');
 const bigCircle = document.getElementById('bigCircle');
 const containerDivs = document.querySelectorAll("div.containerInner");
 const circleDe = document.getElementById('circleDe');
-const circleEn = document.getElementById('circleEn');
+const circleInt = document.getElementById('circleInt');
 const split = document.querySelector('div.split');
 const ecg = document.getElementById('ecg');
 const cabrera = document.getElementById('cabrera');
@@ -63,23 +64,34 @@ const buttonQuiz = document.getElementById('button_quiz');
 const buttonAbout = document.getElementById('button_about');
 const buttonLangEn = document.getElementById('button_en');
 const buttonLangDe = document.getElementById('button_de');
+const buttonLangEs = document.getElementById('button_es');
 
 buttonQuiz.addEventListener('click', switchToQuiz);
 buttonCabrera.addEventListener('click', switchToCabrera);
 buttonAbout.addEventListener('click', switchToAbout);
-buttonLangEn.addEventListener('click', () => {
-    if (!international) {
-        international = true;
-        switchLanguage(international);
-        update(angle);
-    }
+
+buttonLangEn.addEventListener('click', (element) => {
+    international = true;
+    currentLanguage = langEn;
+    switchLanguage(international, currentLanguage);
+    styleLanguageButtons(element.target.id);
+    update(angle);
 })
-buttonLangDe.addEventListener('click', () => {
-    if (international) {
-        international = false;
-        switchLanguage(international);
-        update(angle);
-    }
+
+buttonLangDe.addEventListener('click', (element) => {
+    international = false;
+    currentLanguage = langDe;
+    switchLanguage(international, currentLanguage);
+    styleLanguageButtons(element.target.id);
+    update(angle);
+})
+
+buttonLangEs.addEventListener('click', (element) => {
+    international = true;
+    currentLanguage = langEs;
+    switchLanguage(international, currentLanguage);
+    styleLanguageButtons(element.target.id);
+    update(angle);
 })
 
 // Quiz Buttons 
@@ -89,9 +101,9 @@ const buttonUelt = document.getElementById('button_uelt');
 const buttonSt = document.getElementById('button_st');
 const buttonRt = document.getElementById('button_rt');
 const buttonUert = document.getElementById('button_uert');
-const buttonEnNormal = document.getElementById('button_enNormal');
-const buttonEnLad = document.getElementById('button_enLad');
-const buttonEnRad = document.getElementById('button_enRad');
+const buttonIntNormal = document.getElementById('button_enNormal');
+const buttonIntLad = document.getElementById('button_enLad');
+const buttonIntRad = document.getElementById('button_enRad');
 
 buttonIt.addEventListener('click', () => {
     checkAnswer('Indifferenztyp')
@@ -111,14 +123,14 @@ buttonRt.addEventListener('click', () => {
 buttonUert.addEventListener('click', () => {
     checkAnswer('Ueberdrehter Rechtstyp')
 });
-buttonEnNormal.addEventListener('click', () => {
-    checkAnswer('Normal QRS axis', true)
+buttonIntNormal.addEventListener('click', () => {
+    checkAnswer(currentLanguage.typeNormal, true)
 })
-buttonEnLad.addEventListener('click', () => {
-    checkAnswer('Left axis deviation', true)
+buttonIntLad.addEventListener('click', () => {
+    checkAnswer(currentLanguage.typeLad, true)
 })
-buttonEnRad.addEventListener('click', () => {
-    checkAnswer('Right axis deviation', true)
+buttonIntRad.addEventListener('click', () => {
+    checkAnswer(currentLanguage.typeRad, true)
 })
 
 // Quiz elements
@@ -171,8 +183,12 @@ window.onload = function () {
     resizeEcg();
     if (navigator.language == 'de-DE' || navigator.language == 'de') {
         international = false;
+        currentLanguage = langDe;
+    } else if (navigator.language == 'es') {
+        international = true;
+        currentLanguage = langEs;
     }
-    switchLanguage(international);
+    switchLanguage(international, currentLanguage);
     buttonCabrera.style.color = 'var(--activeButton)';
 }
 
@@ -262,11 +278,11 @@ const update = (angle) => {
     line.style.transform = 'rotate(' + angle + 'deg)';
     updateDropShadow(line, angle);
     if (international) {
-        styleCircleEn(angle);
+        stylecircleInt(angle);
     } else {
         styleCircle(angle);
     }
-    displayLagetyp.innerHTML = (lagetyp(angle, international) + '<br>' + angle.toFixed(1) + '&deg');
+    displayLagetyp.innerHTML = (lagetyp(angle, international, currentLanguage) + '<br>' + angle.toFixed(1) + '&deg');
     const ecgAmplitudes = calculateEcg(angle);
     const ecgLeads = ["I", "II", "III", "aVR", "aVL", "aVF"];
     drawEcg(ctxEcg, ctxGrid, ecgLeads, ecgAmplitudes, ecgCanvas.width, ecgCanvas.height, sideBySide, dpr);
@@ -388,7 +404,7 @@ const styleCircle = (degree) => {
  * @returns an error only if the degree is invalid (>360 or <0)
  */
 
-const styleCircleEn = (degree) => {
+const stylecircleInt = (degree) => {
     if (degree > 360 || degree < 0) {
         console.log('invalid degree');
         return 'invalid degree';
@@ -451,7 +467,7 @@ const resetCirclePart = (e) => {
  */
 
 const checkAnswer = (answer, international = false) => {
-    if (lagetyp(angle, international) === answer) {
+    if (lagetyp(angle, international, currentLanguage) === answer) {
         answersCorrect += 1;
         displayCorrect.classList.remove('animateCorrect');
         void displayCorrect.offsetWidth; // Trigger reflow to make the animation work.
@@ -494,23 +510,28 @@ const getRandomAxis = () => {
 // Language functions
 
 /**
- * Switches between international (english) and German version.
+ * Switches between international and German version.
  * This does not only change the language but also the whole axis-determination (only normal axis, left axis deviation, right axis deviation and Northwest-type for english as compared to the more complicated German system).
- * @param {boolean} international defines if switch should be made to international (english) or German version
+ * @param {boolean} international defines if switch should be made to international or German version
+ * @param {JSON} language An object containing the necessary language content.
  */
-function switchLanguage(international) {
+function switchLanguage(international, language) {
     langButtons(international);
     langCabrera(international);
-    if (international) {
-        langFillContent(langEn);
-        buttonLangEn.classList.add('langButtonActive');
-        buttonLangDe.classList.remove('langButtonActive');
-    } else {
-        langFillContent(langDe);
-        buttonLangDe.classList.add('langButtonActive');
-        buttonLangEn.classList.remove('langButtonActive');
-    }
+    langFillContent(language);
 }
+
+/**
+ * 
+ * @param {object} element the language-button which should be styled as active button
+ */
+function styleLanguageButtons(element) {
+    buttonLangDe.classList.remove('langButtonActive');
+    buttonLangEn.classList.remove('langButtonActive');
+    buttonLangEs.classList.remove('langButtonActive');
+    document.getElementById(element).classList.add('langButtonActive');
+}
+
 
 /**
  * Switches the display of the buttons between international and German version.
@@ -542,16 +563,16 @@ const langButtons = (international) => {
 const langCabrera = (international) => {
     if (international) {
         circleDe.style.display = 'none';
-        circleEn.style.display = 'block';
+        circleInt.style.display = 'block';
     } else {
         circleDe.style.display = 'block';
-        circleEn.style.display = 'none';
+        circleInt.style.display = 'none';
     }
 }
 
 /**
  * Fills the text-content with the correct language.
- * @param {object} language An object containing the necessary content.
+ * @param {JSON} language An object containing the necessary content.
  */
 
 const langFillContent = (language) => {
@@ -563,4 +584,7 @@ const langFillContent = (language) => {
     labelWrong.innerHTML = language.quizWrong;
     sectionGeneral.innerHTML = language.aboutGeneral;
     sectionSources.innerHTML = language.aboutSources;
+    buttonIntNormal.innerHTML = language.typeNormal;
+    buttonIntLad.innerHTML = language.typeLad;
+    buttonIntRad.innerHTML = language.typeRad;
 }
