@@ -184,9 +184,13 @@ window.onload = function () {
     if (navigator.language == 'de-DE' || navigator.language == 'de') {
         international = false;
         currentLanguage = langDe;
+        styleLanguageButtons('button_de');
     } else if (navigator.language == 'es') {
         international = true;
         currentLanguage = langEs;
+        styleLanguageButtons('button_es');
+    } else {
+        styleLanguageButtons('button_en');
     }
     switchLanguage(international, currentLanguage);
     buttonCabrera.style.color = 'var(--activeButton)';
@@ -523,7 +527,7 @@ function switchLanguage(international, language) {
 
 /**
  * 
- * @param {object} element the language-button which should be styled as active button
+ * @param {element} element the id of the language-button which should be styled as active button
  */
 function styleLanguageButtons(element) {
     buttonLangDe.classList.remove('langButtonActive');
