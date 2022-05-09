@@ -506,7 +506,7 @@ const getRandomAxis = () => {
     let degree = 0;
     do {
         degree = Math.floor(Math.random() * 360);
-    } while ((degree >= 180 && degree < 270));
+    } while ((degree >= 170 && degree < 280) || (degree > 320 && degree < 340) || (degree > 20 && degree < 35) || (degree > 55 && degree < 65) || (degree > 85 && degree < 95) || (degree > 115 && degree < 130));
     return degree;
 }
 

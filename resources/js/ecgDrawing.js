@@ -23,20 +23,42 @@ let dpr = 1;
  * @param {double} yLevel the vertical level where the segment should be drawn
  * @param {double} xStart  the horizontal starting point
  * @param {double} factor 1 cm of the ecg in px
+ * @param {boolean} flatline defines wether an amplitude of 0 creates a flatline or an RS-complex with equally large R- and S-waves. Defaults to false.
  */
 
-const drawQRS = (ctx, amplitude, yLevel, xStart, factor) => {
+const drawQRS = (ctx, amplitude, yLevel, xStart, factor, flatline = false) => {
     ctx.lineWidth = lineWidth;
     ctx.arc(xStart + factor * 0.25, yLevel, factor * 0.25, Math.PI, 0); // P-wave, 100 ms = 1/2 factor
     ctx.lineTo(xStart + factor, yLevel); // PQ, 200 ms = 1 factor (from begin of p-wave)
-    if (amplitude >= 0) {
-        ctx.lineTo(xStart + factor + factor * 0.17, (yLevel - amplitude * factor * 2)); // R upstroke, QRS combined 100 ms = 1/2 factor
-        ctx.lineTo(xStart + factor + factor * 0.34, (yLevel + amplitude * factor * 0.6)); // R downstroke
-        ctx.lineTo(xStart + factor + factor * 0.5, yLevel); // S upstroke
+    if (flatline) {
+        if (amplitude >= 0) {
+            ctx.lineTo(xStart + factor + factor * 0.17, (yLevel - amplitude * factor * 2)); // R upstroke, QRS combined 100 ms = 1/2 factor
+            ctx.lineTo(xStart + factor + factor * 0.34, (yLevel + amplitude * factor * 0.6)); // R downstroke
+            ctx.lineTo(xStart + factor + factor * 0.5, yLevel); // S upstroke
+        } else {
+            ctx.lineTo(xStart + factor + factor * 0.16, (yLevel + amplitude * factor * 0.6)); // R upstroke
+            ctx.lineTo(xStart + factor + factor * 0.34, (yLevel - amplitude * factor * 2)); // S downstroke
+            ctx.lineTo(xStart + factor + factor * 0.5, yLevel); // S upstroke
+        }
     } else {
-        ctx.lineTo(xStart + factor + factor * 0.16, (yLevel + amplitude * factor * 0.6)); // R upstroke, QRS combined 100 ms = 1/2 factor
-        ctx.lineTo(xStart + factor + factor * 0.34, (yLevel - amplitude * factor * 2)); // S downstroke
-        ctx.lineTo(xStart + factor + factor * 0.5, yLevel); // S upstroke
+        const threshold = 0.4; //amplitude threshold at which the R-wave does not decrease anymore but the S-wave increases to have a smaller amplitude sum.
+        if (amplitude >= threshold) {
+            ctx.lineTo(xStart + factor + factor * 0.17, (yLevel - amplitude * factor * 2)); // R upstroke
+            ctx.lineTo(xStart + factor + factor * 0.34, (yLevel + amplitude * factor * 0.6)); // R downstroke
+            ctx.lineTo(xStart + factor + factor * 0.5, yLevel); // S upstroke
+        } else if (amplitude < threshold && amplitude >= 0) {
+            ctx.lineTo(xStart + factor + factor * 0.17, (yLevel - threshold * factor * 2)); // R upstroke
+            ctx.lineTo(xStart + factor + factor * 0.34, (yLevel + Math.max(threshold * 0.6, (threshold - amplitude) * 2) * factor)); // R downstroke
+            ctx.lineTo(xStart + factor + factor * 0.5, yLevel); // S upstroke
+        } else if (amplitude < 0 && amplitude > (threshold * -1)) {
+            ctx.lineTo(xStart + factor + factor * 0.17, (yLevel - Math.max(threshold * 0.6, (threshold + amplitude) * 2) * factor)); // R upstroke
+            ctx.lineTo(xStart + factor + factor * 0.34, (yLevel + threshold * 2 * factor)); // R downstroke
+            ctx.lineTo(xStart + factor + factor * 0.5, yLevel); // S upstroke
+        } else {
+            ctx.lineTo(xStart + factor + factor * 0.17, (yLevel + amplitude * factor * 0.6)); // R upstroke
+            ctx.lineTo(xStart + factor + factor * 0.34, (yLevel - amplitude * factor * 2)); // S downstroke
+            ctx.lineTo(xStart + factor + factor * 0.5, yLevel); // S upstroke
+        }
     }
     ctx.arc(xStart + factor * 2.6, yLevel, factor * 0.4, Math.PI, 0); // ST; QT-time is 400 ms = 2 factor => ST is 1.5 factor
 }
@@ -54,8 +76,8 @@ const drawQRS = (ctx, amplitude, yLevel, xStart, factor) => {
  */
 
 const drawEcgLine = (ctx, amplitude, yLevel, canvasWidth, factor, xstart = 0) => {
-    let begin = xstart + 30+30*dpr + factor * 0.75;
-    ctx.moveTo(xstart + 30+30*dpr, yLevel);
+    let begin = xstart + 30 + 30 * dpr + factor * 0.75;
+    ctx.moveTo(xstart + 30 + 30 * dpr, yLevel);
     while (begin < canvasWidth) {
         drawQRS(ctx, amplitude, yLevel, begin, factor);
         ctx.lineTo(begin + factor * 5, yLevel);
@@ -81,7 +103,7 @@ const drawEcg = (ctxEcg, ctxGrid, ecgLeads, ecgAmplitudes, canvasWidth, canvasHe
     dpr = _dpr
     lineWidth = dpr;
     if (dpr >= 2) {
-        font = 15*dpr + 'px serif';
+        font = 15 * dpr + 'px serif';
     } else {
         font = '20px serif'
     }
