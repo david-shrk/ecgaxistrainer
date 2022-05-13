@@ -41,7 +41,7 @@ const drawQRS = (ctx, amplitude, yLevel, xStart, factor, flatline = false) => {
             ctx.lineTo(xStart + factor + factor * 0.5, yLevel); // S upstroke
         }
     } else {
-        const threshold = 0.4; //amplitude threshold at which the R-wave does not decrease anymore but the S-wave increases to have a smaller amplitude sum.
+        const threshold = 0.25; //amplitude threshold at which the R-wave does not decrease anymore but the S-wave increases to have a smaller amplitude sum.
         if (amplitude >= threshold) {
             ctx.lineTo(xStart + factor + factor * 0.17, (yLevel - amplitude * factor * 2)); // R upstroke
             ctx.lineTo(xStart + factor + factor * 0.34, (yLevel + amplitude * factor * 0.6)); // R downstroke
