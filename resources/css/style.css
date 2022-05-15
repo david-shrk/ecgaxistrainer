@@ -273,6 +273,10 @@ nav .langButton:hover {
     margin-right: 0.8rem;
 }
 
+#sectionGeneral img {
+    height: 1.1rem;
+    vertical-align: middle;
+}
 
 
 
